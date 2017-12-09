@@ -8,16 +8,25 @@ namespace Ruleta
 {
     class Ruleta
     {
-        int bank = 1000;
-        Random r = new Random();
+        private int bank;
+        private Random r = new Random();
 
         public void ZacniHru()
         {
+            bank = 1000;
+
             Console.WriteLine("Na co chcete stavit?");
             string vstup = Console.ReadLine();
 
             Console.WriteLine("Zadaj sumu stavky");
             int stavka = int.Parse(Console.ReadLine());
+
+            while (bank < (2 * stavka))
+            {
+                Console.WriteLine("Nedostatok penazi v banku\n");
+                Console.WriteLine("Zadaj sumu stavky");
+                stavka = int.Parse(Console.ReadLine());
+            }
 
             if (!SkontrolujVstup(vstup, out int typ)) return;
 
@@ -36,46 +45,23 @@ namespace Ruleta
                 Console.WriteLine("Stav banku: {0}", bank);
             }
             
-
-            
         }
-
-        //private int ZmenaBanku()
-        //{
-
-        //}
 
         private bool Stavit(string vstup, int typStavky)
         {
             switch (typStavky)
             {
                 case 1:
-                    int nahod = r.Next(37);
-                    Console.WriteLine(nahod);
-                    return (nahod == int.Parse(vstup));                    
+                    return (r.Next(37) == int.Parse(vstup));                    
                 case 2:
                     int cisloFarby = (vstup == "cierna") ? 1 : 0;
-                    int nah = r.Next(2);
-                    Console.WriteLine(cisloFarby + " " + nah);
-                    return (nah == cisloFarby);
+                    return (r.Next(2) == cisloFarby);
                 case 3:
                     int parne = (vstup == "parne") ? 0 : 1;
-                    int nahodC = r.Next(37);
-                    Console.WriteLine(nahodC);
-                    return (nahodC % 2 == parne);
+                    return (r.Next(37) % 2 == parne);
                 default:
                     return false;
             }
-        }
-
-        private bool StavkaNaCislo(string cislo)
-        {
-            return (r.Next(37) == int.Parse(cislo));
-        }
-
-        private bool Parne(string cislo)
-        {
-            return (int.Parse(cislo) % 2 == 0);
         }
 
         private bool SkontrolujVstup(string vstup, out int typStavky)
