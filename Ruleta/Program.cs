@@ -10,12 +10,12 @@ namespace Ruleta
     {
         static void Main(string[] args)
         {
-            Ruleta ruleta = new Ruleta(1000);
+            Ruleta ruleta = new Ruleta(5000);
 
             while (true)
             {   
                 ruleta.ZacniHru();
-                Console.ReadKey();
+                Console.WriteLine("");
             }
         }
     }

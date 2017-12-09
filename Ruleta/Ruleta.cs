@@ -8,7 +8,7 @@ namespace Ruleta
 {
     class Ruleta
     {
-        private int bank;
+        private double bank;
         private Random r = new Random();
 
         public Ruleta(int bank)
@@ -20,8 +20,15 @@ namespace Ruleta
         {
             int typ;
             
-            Console.WriteLine("Nova stavka (cervena, cierna, parne, neparne, cislo: 0 - 36)");
+            Console.WriteLine("Nova stavka (cervena, cierna, parne, neparne, cislo: 0 - 36, ukoncenie hry: 'koniec')\n-------------------------------------------------------------------");
             string vstup = Console.ReadLine();
+
+            if (vstup == "koniec")
+            {
+
+                System.Threading.Thread.Sleep(1000);
+                Environment.Exit(1);
+            }
 
             while (!SkontrolujVstup(vstup, out typ))
             {
@@ -30,33 +37,39 @@ namespace Ruleta
                 vstup = Console.ReadLine();
             }
 
-
-
             //if (!SkontrolujVstup(vstup, out int typ)) return;
 
             Console.WriteLine("Zadaj sumu stavky");
-            int stavka = int.Parse(Console.ReadLine());
+            double stavka = double.Parse(Console.ReadLine());
 
-            while (bank < (2 * stavka))
+            while (bank < stavka)
             {
                 Console.WriteLine("Nedostatok penazi v banku\n");
                 Console.WriteLine("Zadaj sumu stavky");
-                stavka = int.Parse(Console.ReadLine());
+                stavka = double.Parse(Console.ReadLine());
             }
             
             bool vyhra = Stavit(vstup, typ);
 
             if (vyhra)
             {
-                Console.WriteLine("Vyhra!");
+                Console.WriteLine("VYHRA!");
                 bank += stavka;
                 Console.WriteLine("Stav banku: {0}", bank);
             }
             else
             {
-                Console.WriteLine("Prehra");
+                Console.WriteLine("PREHRA");
                 bank -= stavka;
                 Console.WriteLine("Stav banku: {0}", bank);
+            }
+
+            if (bank == 0)
+            {
+                Console.WriteLine("Z banku boli vycerpane vsetky peniaze.\nHra bude ukoncena.");
+                System.Threading.Thread.Sleep(3000);
+                Environment.Exit(1);
+                return;
             }
             
         }
@@ -96,7 +109,6 @@ namespace Ruleta
 
                 if (cislo < 0 || cislo > 36)
                 {
-                    Console.WriteLine("Nespravny vstup");
                     return false;
                 }
 
@@ -114,7 +126,6 @@ namespace Ruleta
             }
             else
             {
-                Console.WriteLine("Nespravny vstup");
                 return false;
             }
         }
