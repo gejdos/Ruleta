@@ -10,7 +10,11 @@ namespace Ruleta
     {
         static void Main(string[] args)
         {
+            Ruleta ruleta = new Ruleta();
 
+            ruleta.ZacniHru();
+
+            Console.ReadKey();
         }
     }
 }
