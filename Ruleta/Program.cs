@@ -10,7 +10,8 @@ namespace Ruleta
     {
         static void Main(string[] args)
         {
-            Ruleta ruleta = new Ruleta(5000);
+            Random r = new Random();
+            Ruleta ruleta = new Ruleta(5000, r);
 
             while (true)
             {   

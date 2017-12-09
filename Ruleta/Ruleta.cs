@@ -9,11 +9,12 @@ namespace Ruleta
     class Ruleta
     {
         private double bank;
-        private Random r = new Random();
+        private Random r;
 
-        public Ruleta(int bank)
+        public Ruleta(int bank, Random r)
         {
             this.bank = bank;
+            this.r = r;
         }
 
         public void ZacniHru()
@@ -25,7 +26,7 @@ namespace Ruleta
 
             if (vstup == "koniec")
             {
-
+                Console.WriteLine("Ahoj!");
                 System.Threading.Thread.Sleep(1000);
                 Environment.Exit(1);
             }
@@ -33,7 +34,7 @@ namespace Ruleta
             while (!SkontrolujVstup(vstup, out typ))
             {
                 Console.WriteLine("Neplatny vstup. Skuste to znovu.\n");
-                Console.WriteLine("Na co chcete stavit?");
+                Console.WriteLine("Nova stavka (cervena, cierna, parne, neparne, cislo: 0 - 36, ukoncenie hry: 'koniec')\n-------------------------------------------------------------------");
                 vstup = Console.ReadLine();
             }
 
