@@ -20,48 +20,33 @@ namespace Ruleta
             Console.WriteLine("Zadaj sumu stavky");
             int stavka = int.Parse(Console.ReadLine());
 
-            //if (!SkontrolujVstup(vstup, out bool jeCislo)) return;
+            if (!SkontrolujVstup(vstup, out int typ)) return;
 
-            //if (jeCislo)
-            //{
-            //    Console.WriteLine(StavkaNaCislo(vstup));
-            //}
-            //else
-            //{
-            //    Console.WriteLine(StavkaNaFarbu(vstup));
-            //}
-
-
-
-
+            bool vyhra = Stavit(vstup, typ);
+            
         }
-        
+
         //private int ZmenaBanku()
         //{
 
         //}
 
-        //private bool Stavka(string vstup, int typStavky)
-        //{
-        //    switch (typStavky)
-        //    {
-        //        case 1:
-        //            return (r.Next(37) == int.Parse(vstup));  
-        //        case 2:
-        //            int cisloFarby = (vstup == "cierna") ? 1 : 0;
-        //            return (r.Next(2) == cisloFarby);
-        //        case 3:
-        //            int parne = (vstup == "parne") ? 1 : 0;
-        //            return (int.Parse(vstup) % 2 == 0);
-
-
-
-        //        default:
-        //            break;
-        //    }
-
-         
-        //}
+        private bool Stavit(string vstup, int typStavky)
+        {
+            switch (typStavky)
+            {
+                case 1:
+                    return (r.Next(37) == int.Parse(vstup));
+                case 2:
+                    int cisloFarby = (vstup == "cierna") ? 1 : 0;
+                    return (r.Next(2) == cisloFarby);
+                case 3:
+                    int parne = (vstup == "parne") ? 0 : 1;
+                    return (int.Parse(vstup) % 2 == parne);
+                default:
+                    return false;
+            }
+        }
 
         private bool StavkaNaCislo(string cislo)
         {
