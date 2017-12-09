@@ -14,22 +14,22 @@ namespace Ruleta
 
         public void ZacniHru()
         {
-            Console.WriteLine("Zadaj farbu alebo cislo");
+            Console.WriteLine("Zadaj typ stavky:\n");
             string vstup = Console.ReadLine();
 
             Console.WriteLine("Zadaj sumu stavky");
             int stavka = int.Parse(Console.ReadLine());
 
-            if (!SkontrolujVstup(vstup, out bool jeCislo)) return;
+            //if (!SkontrolujVstup(vstup, out bool jeCislo)) return;
 
-            if (jeCislo)
-            {
-                Console.WriteLine(StavkaNaCislo(vstup));
-            }
-            else
-            {
-                Console.WriteLine(StavkaNaFarbu(vstup));
-            }
+            //if (jeCislo)
+            //{
+            //    Console.WriteLine(StavkaNaCislo(vstup));
+            //}
+            //else
+            //{
+            //    Console.WriteLine(StavkaNaFarbu(vstup));
+            //}
 
 
 
@@ -41,12 +41,27 @@ namespace Ruleta
 
         //}
 
-        private bool StavkaNaFarbu(string farba)
-        {
-            int cisloFarby = (farba == "cierna") ? 1 : 0;
+        //private bool Stavka(string vstup, int typStavky)
+        //{
+        //    switch (typStavky)
+        //    {
+        //        case 1:
+        //            return (r.Next(37) == int.Parse(vstup));  
+        //        case 2:
+        //            int cisloFarby = (vstup == "cierna") ? 1 : 0;
+        //            return (r.Next(2) == cisloFarby);
+        //        case 3:
+        //            int parne = (vstup == "parne") ? 1 : 0;
+        //            return (int.Parse(vstup) % 2 == 0);
 
-            return (r.Next(2) == cisloFarby);
-        }
+
+
+        //        default:
+        //            break;
+        //    }
+
+         
+        //}
 
         private bool StavkaNaCislo(string cislo)
         {
@@ -58,17 +73,15 @@ namespace Ruleta
             return (int.Parse(cislo) % 2 == 0);
         }
 
-        private bool SkontrolujVstup(string vstup, out bool naCislo, out bool naFarbu, out bool naParne)
+        private bool SkontrolujVstup(string vstup, out int typStavky)
         {
             int cislo;
-            naCislo = false;
-            naFarbu = false;
-            naParne = false;
+            typStavky = 0;
 
             if (int.TryParse(vstup, out cislo))
             {
                 cislo = int.Parse(vstup);
-                naCislo = true;
+                typStavky = 1;
 
                 if (cislo < 0 || cislo > 36)
                 {
@@ -80,12 +93,12 @@ namespace Ruleta
             }
             else if (vstup == "cierna" || vstup == "cervena")
             {
-                naFarbu = true;
+                typStavky = 2;
                 return true;
             }
             else if (vstup == "parne" || vstup == "neparne")
             {
-                naParne = true;   
+                typStavky = 3;
                 return true;
             }
             else
