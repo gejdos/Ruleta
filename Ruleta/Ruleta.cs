@@ -9,12 +9,11 @@ namespace Ruleta
     class Ruleta
     {
         int bank = 1000;
-        int stavka;
         Random r = new Random();
 
         public void ZacniHru()
         {
-            Console.WriteLine("Zadaj typ stavky:\n");
+            Console.WriteLine("Na co chcete stavit?");
             string vstup = Console.ReadLine();
 
             Console.WriteLine("Zadaj sumu stavky");
@@ -23,6 +22,21 @@ namespace Ruleta
             if (!SkontrolujVstup(vstup, out int typ)) return;
 
             bool vyhra = Stavit(vstup, typ);
+
+            if (vyhra)
+            {
+                Console.WriteLine("Vyhra!");
+                bank += stavka;
+                Console.WriteLine("Stav banku: {0}", bank);
+            }
+            else
+            {
+                Console.WriteLine("Prehra");
+                bank -= stavka;
+                Console.WriteLine("Stav banku: {0}", bank);
+            }
+            
+
             
         }
 
@@ -36,13 +50,19 @@ namespace Ruleta
             switch (typStavky)
             {
                 case 1:
-                    return (r.Next(37) == int.Parse(vstup));
+                    int nahod = r.Next(37);
+                    Console.WriteLine(nahod);
+                    return (nahod == int.Parse(vstup));                    
                 case 2:
                     int cisloFarby = (vstup == "cierna") ? 1 : 0;
-                    return (r.Next(2) == cisloFarby);
+                    int nah = r.Next(2);
+                    Console.WriteLine(cisloFarby + " " + nah);
+                    return (nah == cisloFarby);
                 case 3:
                     int parne = (vstup == "parne") ? 0 : 1;
-                    return (int.Parse(vstup) % 2 == parne);
+                    int nahodC = r.Next(37);
+                    Console.WriteLine(nahodC);
+                    return (nahodC % 2 == parne);
                 default:
                     return false;
             }

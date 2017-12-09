@@ -10,17 +10,21 @@ namespace Ruleta
     {
         static void Main(string[] args)
         {
-            //Ruleta ruleta = new Ruleta();
+            while (true)
+            {
+                Ruleta ruleta = new Ruleta();
 
-            //ruleta.ZacniHru();
-            Console.WriteLine("Vstup");
-            int cislo = int.Parse(Console.ReadLine());
+                ruleta.ZacniHru();
+                //Console.WriteLine("Vstup");
+                //int cislo = int.Parse(Console.ReadLine());
 
-            int parne = cislo % 2;
+                //int parne = cislo % 2;
 
-            Console.WriteLine(parne);
+                //Console.WriteLine(parne);
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
+            
         }
     }
 }
