@@ -11,12 +11,28 @@ namespace Ruleta
         private int bank;
         private Random r = new Random();
 
+        public Ruleta(int bank)
+        {
+            this.bank = bank;
+        }
+
         public void ZacniHru()
         {
-            bank = 1000;
-
-            Console.WriteLine("Na co chcete stavit?");
+            int typ;
+            
+            Console.WriteLine("Nova stavka (cervena, cierna, parne, neparne, cislo: 0 - 36)");
             string vstup = Console.ReadLine();
+
+            while (!SkontrolujVstup(vstup, out typ))
+            {
+                Console.WriteLine("Neplatny vstup. Skuste to znovu.\n");
+                Console.WriteLine("Na co chcete stavit?");
+                vstup = Console.ReadLine();
+            }
+
+
+
+            //if (!SkontrolujVstup(vstup, out int typ)) return;
 
             Console.WriteLine("Zadaj sumu stavky");
             int stavka = int.Parse(Console.ReadLine());
@@ -27,9 +43,7 @@ namespace Ruleta
                 Console.WriteLine("Zadaj sumu stavky");
                 stavka = int.Parse(Console.ReadLine());
             }
-
-            if (!SkontrolujVstup(vstup, out int typ)) return;
-
+            
             bool vyhra = Stavit(vstup, typ);
 
             if (vyhra)
@@ -49,16 +63,22 @@ namespace Ruleta
 
         private bool Stavit(string vstup, int typStavky)
         {
+            int nahodneCislo;
+
             switch (typStavky)
             {
                 case 1:
-                    return (r.Next(37) == int.Parse(vstup));                    
+                    nahodneCislo = r.Next(37);
+                    Console.WriteLine("Padlo cislo {0}", nahodneCislo);
+                    return (nahodneCislo == int.Parse(vstup));                    
                 case 2:
                     int cisloFarby = (vstup == "cierna") ? 1 : 0;
                     return (r.Next(2) == cisloFarby);
                 case 3:
                     int parne = (vstup == "parne") ? 0 : 1;
-                    return (r.Next(37) % 2 == parne);
+                    nahodneCislo = r.Next(37);
+                    Console.WriteLine("Padlo cislo {0}", nahodneCislo);
+                    return (nahodneCislo % 2 == parne);
                 default:
                     return false;
             }
