@@ -33,5 +33,32 @@ namespace Ruleta
             return (int.Parse(cislo) % 2 == 0);
         }
 
+        private bool SkontrolujVstup(string vstup)
+        {
+            int cislo;
+
+            if (int.TryParse(vstup, out cislo))
+            {
+                cislo = int.Parse(vstup);
+
+                if (cislo < 0 || cislo > 36)
+                {
+                    Console.WriteLine("Nespravny vstup");
+                    return false;
+                }
+
+                return true;
+            }
+            else if (vstup == "cierna" || vstup == "cervena")
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Nespravny vstup");
+                return false;
+            }
+        }
+
     }
 }
