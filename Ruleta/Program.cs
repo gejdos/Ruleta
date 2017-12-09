@@ -11,7 +11,7 @@ namespace Ruleta
         static void Main(string[] args)
         {
             Random r = new Random();
-            Ruleta ruleta = new Ruleta(5000, r);
+            Ruleta ruleta = new Ruleta(1000, r);
 
             while (true)
             {   

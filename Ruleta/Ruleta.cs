@@ -8,7 +8,7 @@ namespace Ruleta
 {
     class Ruleta
     {
-        private double bank;
+        private int bank;
         private Random r;
 
         public Ruleta(int bank, Random r)
@@ -41,13 +41,13 @@ namespace Ruleta
             //if (!SkontrolujVstup(vstup, out int typ)) return;
 
             Console.WriteLine("Zadaj sumu stavky");
-            double stavka = double.Parse(Console.ReadLine());
+            int stavka = int.Parse(Console.ReadLine());
 
             while (bank < stavka)
             {
                 Console.WriteLine("Nedostatok penazi v banku\n");
                 Console.WriteLine("Zadaj sumu stavky");
-                stavka = double.Parse(Console.ReadLine());
+                stavka = int.Parse(Console.ReadLine());
             }
             
             bool vyhra = Stavit(vstup, typ);
