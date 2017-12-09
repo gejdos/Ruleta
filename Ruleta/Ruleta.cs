@@ -11,6 +11,11 @@ namespace Ruleta
         int bank = 1000;
         Random r = new Random();
 
+        private int ZmenaBanku()
+        {
+
+        }
+
         private bool StavkaNaFarbu(string farba)
         {
             int cisloFarby = (farba == "cierna") ? 1 : 0;
@@ -25,10 +30,8 @@ namespace Ruleta
 
         private bool Parne(string cislo)
         {
-            return ()
+            return (int.Parse(cislo) % 2 == 0);
         }
-
-
 
     }
 }
