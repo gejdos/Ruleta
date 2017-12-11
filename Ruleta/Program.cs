@@ -15,8 +15,7 @@ namespace Ruleta
 
             while (true)
             {   
-                ruleta.ZacniHru();
-                Console.WriteLine("");
+                ruleta.ZadajStavku();
             }
         }
     }
