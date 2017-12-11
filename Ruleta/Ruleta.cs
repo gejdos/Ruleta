@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ruleta
 {
@@ -28,8 +24,8 @@ namespace Ruleta
             
             do
             {
-                Console.WriteLine("\nNova stavka (cervena, cierna, parne, neparne, cislo: 0 - 36, ukoncenie hry: 'koniec', prehranie hry od zaciatku: 'replay')" +
-                    "\n--------------------------------------------------------------------------------------------------------------------------");
+                Console.WriteLine("\nNova stavka (cervena, cierna, parne (sude), neparne (liche), cislo: 0 - 36, ukoncenie hry: 'koniec', prehranie hry od zaciatku: 'replay')" +
+                    "\n------------------------------------------------------------------------------------------------------------------------------------------");
                 vstup = Console.ReadLine();
 
             } while (!SkontrolujVstup(vstup, out typ));
